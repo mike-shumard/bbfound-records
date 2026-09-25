@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BBfound: independent lodging factual records</title>
+<meta name="description" content="Independent factual records for individual lodging properties, compiled from public sources with citations.">
+<link rel="canonical" href="https://records.bbfound.com/">
+<style>body{font-family:system-ui,sans-serif;max-width:760px;margin:2rem auto;padding:0 1rem;line-height:1.5;color:#111;background:#fff}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:.4rem;vertical-align:top;text-align:left}th{width:28%;background:#f4f4f4}.note{border:1px solid #999;padding:.6rem;background:#fafafa}sup a{text-decoration:none}nav a{margin-right:1rem}</style>
+</head>
+<body>
+<nav><a href="#corrections">Report a correction</a></nav>
+<h1>BBfound factual records</h1>
+<p class="note">Independent factual records compiled from public sources, mainly each property's official website. BBfound is not affiliated with these properties. These records are not reviews, ratings, or recommendations, and they do not indicate any authorization, endorsement, partnership, or participation by the properties. Listed alphabetically.</p>
+<ul>
+<li><a href="artifact-inn-san-diego/">The Artifact Inn</a> (San Diego, CA)</li>
+<li><a href="bear-flag-inn-calistoga/">Bear Flag Inn</a> (Calistoga, CA)</li>
+<li><a href="blue-sands-inn-santa-barbara/">Blue Sands Inn</a> (Santa Barbara, CA)</li>
+<li><a href="moonrise-on-mill-street-inn-nevada-city/">Moonrise On Mill Street Inn</a> (Nevada City, CA)</li>
+<li><a href="upham-hotel-santa-barbara/">The Upham Hotel</a> (Santa Barbara, CA)</li>
+</ul>
+<p>Last verified: <time datetime="2026-09-24">2026-09-24</time>.</p>
+<h2 id="corrections">Report a correction</h2>
+<p>If any fact on these pages is wrong or out of date, use this form. Please include a source for the correct information. The page's last-verified date is updated when a change is made. Property owners may also ask for a record to be removed.</p>
+<p class="note"><strong>BBfound reviews correction requests against public or property-supplied evidence before updating a record.</strong></p>
+<form name="correction" method="POST" action="https://api.web3forms.com/submit">
+<input type="hidden" name="access_key" value="fdda516d-98ab-44ed-852c-2cc0043ebe11">
+<input type="hidden" name="subject" value="BBfound correction: records index">
+<input type="hidden" name="from_name" value="BBfound corrections">
+<input type="hidden" name="redirect" value="https://mike-shumard.github.io/bbfound-records/thanks/">
+<p><label for="c-property">Property name</label><br><input id="c-property" type="text" name="property" value="" required></p>
+<p><label for="c-name">Your name</label><br><input id="c-name" type="text" name="name" autocomplete="name" required></p>
+<p><label for="c-email">Your email</label><br><input id="c-email" type="email" name="email" autocomplete="email" required></p>
+<p><label for="c-correction">What needs correcting?</label><br><textarea id="c-correction" name="correction" rows="6" required></textarea></p>
+<p><label for="c-source">Source/link supporting the correction</label> (optional)<br><input id="c-source" type="text" name="source" inputmode="url"></p>
+<p><button type="submit">Send correction request</button></p>
+</form>
+</body>
+</html>
