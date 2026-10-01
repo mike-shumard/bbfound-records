@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seagull Inn — Your BBFinder Proof Page</title>
+<meta name="description" content="A personalized, source-linked look at how Seagull Inn appears to travelers — and the AI assistants helping them choose where to stay.">
+<style>
+:root{
+  --paper:#fbf9f4; --ink:#20303a; --ink-deep:#14242e;
+  --accent:#b26a1b; --accent-deep:#8a5212; --accent-soft:#f7ecda;
+  --card:#ffffff; --line:#e9dfcf; --muted:#5f6c76;
+  --good:#2e7d4f; --good-soft:#e9f4ed; --warn:#965f10; --warn-soft:#fbf3df;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.65;font-size:1.02rem}
+a{color:var(--accent-deep);overflow-wrap:anywhere}
+a:hover{color:var(--accent)}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+/* ---------- hero ---------- */
+.hero{background:var(--ink-deep);color:#f8f4ec;padding:clamp(2.75rem,7vw,4.75rem) 0 clamp(2.25rem,6vw,3.75rem)}
+.hero .kicker{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:#d8c9a8;margin:0 0 1rem}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;
+  font-size:clamp(2.1rem,6vw,3.4rem);line-height:1.12;margin:0 0 1.25rem}
+.hero .lede{font-size:clamp(1.12rem,2.8vw,1.4rem);line-height:1.55;margin:1rem 0 0;max-width:38rem;color:#f2ecdf}
+/* hero measurement stat (numbers-first) */
+.bignum{font-family:Georgia,"Times New Roman",serif;font-weight:700;
+  font-size:clamp(2.6rem,8vw,4.2rem);line-height:1;margin:1.5rem 0 .5rem;color:#fff}
+.rate{font-size:clamp(1.05rem,2.6vw,1.3rem);margin:0 0 .75rem;color:#f2ecdf;max-width:40rem}
+.conditions{font-size:.88rem;color:#cdbd97;margin:0;max-width:42rem}
+/* hero not-yet-measured marker */
+.notyet{background:#3a2c14;border:1px solid #8a6a2a;border-radius:.75rem;
+  padding:1.1rem 1.25rem;margin:1.5rem 0 0;max-width:42rem}
+.notyet p{margin:.4rem 0;color:#f2ecdf}
+.notyet strong{color:#ffd98a}
+/* ---------- goal band ---------- */
+.goalband{background:var(--accent-soft);border-bottom:1px solid var(--line)}
+.goalband .wrap{padding-top:1.4rem;padding-bottom:1.4rem}
+.goalband p{margin:0;font-size:1.02rem}
+.goalband strong{color:var(--accent-deep)}
+/* ---------- controlled-results block ---------- */
+.controlled{background:#fff;border-bottom:1px solid var(--line)}
+.ctrl-frame{font-size:1.02rem;color:var(--muted);margin:0 0 1.25rem;max-width:40rem}
+.arms{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 1.1rem}
+@media (max-width:40rem){.arms{grid-template-columns:1fr}}
+.arm{background:var(--paper);border:1px solid var(--line);border-radius:.75rem;padding:1.15rem 1.25rem}
+.arm h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 .5rem;color:var(--accent-deep)}
+.armnum{font-family:Georgia,"Times New Roman",serif;font-size:1.6rem;margin:0 0 .5rem;color:var(--ink-deep)}
+.arm p{margin:.4rem 0;font-size:.95rem}
+.lift{font-size:1.08rem;background:var(--accent-soft);border:1px solid var(--line);
+  border-radius:.6rem;padding:1rem 1.2rem}
+.scope{font-size:.88rem;color:var(--muted)}
+.subord{border-left:4px solid var(--line);padding:.2rem 0 .2rem 1.1rem;margin-top:1.25rem}
+.subord p{font-size:.93rem;color:var(--muted);margin:.4rem 0}
+/* ---------- sections ---------- */
+section{padding:clamp(2.25rem,6vw,3.5rem) 0}
+section + section{border-top:1px solid var(--line)}
+.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);
+  margin:0 0 .6rem;font-weight:700}
+h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;
+  font-size:clamp(1.5rem,4vw,2rem);line-height:1.25;margin:0 0 1rem}
+.section-intro{color:var(--muted);margin:0 0 1.5rem;max-width:38rem}
+/* positives / observations */
+.positive{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--good);
+  border-radius:.6rem;padding:1rem 1.2rem;margin:0 0 .9rem}
+.positive p{margin:0}
+.positive .src{font-size:.85rem;color:var(--muted);margin-top:.35rem}
+/* comparison */
+.finding-head{background:var(--warn-soft);border:1px solid #ecd9ac;border-radius:.75rem;
+  padding:1.25rem 1.35rem;margin:0 0 1.25rem;font-size:1.12rem}
+.finding-head strong{color:var(--warn)}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 .5rem}
+@media (max-width:40rem){.compare{grid-template-columns:1fr}}
+.cmp{background:var(--card);border:1px solid var(--line);border-radius:.75rem;padding:1.15rem 1.25rem}
+.cmp h3{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 .6rem}
+.cmp.official{border-top:4px solid var(--good)}
+.cmp.official h3{color:var(--good)}
+.cmp.elsewhere{border-top:4px solid var(--warn)}
+.cmp.elsewhere h3{color:var(--warn)}
+.cmp p{margin:0 0 .6rem}
+.cmp .src{font-size:.85rem;color:var(--muted)}
+/* proof + methods */
+.proof-item{background:var(--card);border:1px solid var(--line);border-radius:.6rem;
+  padding:1rem 1.2rem;margin:0 0 .9rem}
+.proof-item p{margin:0}
+.proof-item .src{font-size:.85rem;color:var(--muted);margin-top:.35rem}
+details.sources{margin-top:1.5rem;border:1px solid var(--line);border-radius:.6rem;
+  background:var(--card);padding:.9rem 1.2rem}
+details.sources summary{cursor:pointer;font-weight:700;color:var(--accent-deep)}
+details.sources ol{margin:.8rem 0 .2rem;padding-left:1.3rem;font-size:.9rem;color:var(--muted)}
+details.sources li{margin-bottom:.45rem}
+.methodlist{margin:0 0 1.25rem;padding-left:1.25rem}
+.methodlist li{margin-bottom:.55rem}
+/* record preview */
+.record{background:var(--ink-deep);color:#eef2f4;border-radius:.9rem;padding:1.5rem clamp(1.1rem,4vw,2rem);
+  margin:0 0 1rem}
+.record h3{font-family:Georgia,serif;margin:0 0 .25rem;font-size:1.25rem;color:#fff}
+.record .sub{font-size:.85rem;color:#b9c6cd;margin:0 0 1.1rem}
+.record table{border-collapse:collapse;width:100%;font-size:.95rem}
+.record th,.record td{border-top:1px solid #33505c;padding:.55rem .4rem;vertical-align:top;text-align:left}
+.record th{width:32%;color:#d8c9a8;font-weight:600;background:none;border-left:none;border-right:none}
+.record td{color:#f0f4f6}
+/* deliverables + price */
+.deliver{list-style:none;margin:0 0 1.5rem;padding:0}
+.deliver li{background:var(--card);border:1px solid var(--line);border-radius:.6rem;
+  padding:.85rem 1.1rem .85rem 2.6rem;margin:0 0 .6rem;position:relative}
+.deliver li::before{content:"✓";position:absolute;left:1.1rem;top:.85rem;color:var(--good);font-weight:800}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:0 0 1rem}
+@media (max-width:40rem){.price{grid-template-columns:1fr}}
+.price .tier{background:var(--card);border:2px solid var(--accent);border-radius:.75rem;
+  padding:1.25rem;text-align:center}
+.price .tier.optional{border-color:var(--line)}
+.price .amount{font-family:Georgia,serif;font-size:2rem;margin:.25rem 0}
+.price .per{color:var(--muted);font-size:.9rem;margin:0}
+.price .name{font-weight:700;margin:0}
+.renewal{font-size:.95rem;color:var(--muted);margin:0 0 1rem;max-width:40rem}
+/* CTA */
+.cta{text-align:center;padding:clamp(2.5rem,7vw,4rem) 0}
+.cta h2{margin-bottom:.75rem}
+.cta p{color:var(--muted);max-width:34rem;margin:0 auto 1.5rem}
+.btn{display:inline-block;background:var(--accent);color:#fff !important;text-decoration:none;
+  font-weight:800;font-size:1.15rem;padding:1.05rem 2.4rem;border-radius:999px;
+  box-shadow:0 4px 18px rgba(178,106,27,.35);max-width:100%}
+.btn:hover{background:var(--accent-deep);color:#fff}
+.cta .staged-note{font-size:.82rem;color:var(--muted);margin-top:1rem}
+/* footer */
+footer{border-top:1px solid var(--line);padding:1.75rem 0 2.5rem;color:var(--muted);font-size:.85rem}
+footer p{margin:.3rem 0}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">BBFinder &middot; Proof of record &middot; BBF-0001</p>
+    <h1>When travelers ask AI where to stay, does Seagull Inn make the list?</h1>
+    
+    
+    <div class="notyet">
+      <p><strong>Owner-specific measurement: not yet performed</strong> for Seagull Inn.</p>
+      <p>Seagull Inn has not been through our AI-discovery measurement. The study numbers on this page come from other properties &mdash; they are not this inn&rsquo;s scores.</p>
+    </div>
+    <p class="lede">You’re doing a lot right. But travelers—and increasingly the AI assistants helping them choose where to stay—may not always be getting the same story.</p>
+    
+  </div>
+</header>
+
+<div class="goalband">
+  <div class="wrap">
+    <p><strong>Our goal:</strong> to make your inn easier to find and accurately understand when travelers&mdash;and increasingly the AI assistants helping them plan trips&mdash;are deciding where to stay.</p>
+  </div>
+</div>
+
+
+<section class="controlled">
+  <div class="wrap">
+    <p class="eyebrow">What better property information could change</p>
+    <h2>15 properties. Ordinary web search: 22.5% &rarr; 79.2% with supplied records.</h2>
+    <p class="ctrl-frame">A study of other properties — Seagull Inn was not tested in this experiment, and these are not this inn&#x27;s scores.</p>
+    <div class="arms">
+      <div class="arm">
+        <h3>ORDINARY WEB SEARCH (A)</h3>
+        <p class="armnum">27 of 120 scored property observations &mdash; 22.5%</p>
+        <p>The model answered the traveler questions with web search enabled and no BBFinder records supplied &mdash; ordinary search-enabled AI responses.</p>
+      </div>
+      <div class="arm">
+        <h3>SUPPLIED RECORDS (C)</h3>
+        <p class="armnum">95 of 120 scored property observations &mdash; 79.2%</p>
+        <p>The same model received the preamble plus the BBFinder records for all 5 market properties, including the target.</p>
+      </div>
+    </div>
+    <p class="lift">Change: <strong>+56.7 percentage points</strong> (absolute difference, not a multiplier).</p>
+    <p class="scope">A controlled experiment on the Perplexity API (Sonar), web search enabled, low search context, September 24, 2026: 15 properties &times; 4 questions &times; 2 repetitions = 120 scored property observations per condition. The intervention was records supplied directly to the AI in the prompt. It is not measured improvement from publishing records online &mdash; supplying records directly to AI does not prove that publishing a page on the web will cause AI to retrieve it. The ordinary-search control and the supplied-record condition each used 40 distinct AI calls; the peer-record condition used 120 calls. From the ordinary-search control to the supplied-record condition, 14 of the 15 properties improved and one tied. This is not a promise of any change for your property.</p>
+    <div class="subord">
+      <p><strong>Secondary comparison &mdash; competitor records as the baseline.</strong> The same study ran a tougher baseline where the model received records for the 4 nearby properties but not the target&rsquo;s record (PEERS-ONLY): 3 of 120 scored property observations named the target &mdash; 2.5%. Against the same supplied-record condition (FULL-LAYER: 95 of 120 scored property observations, 79.2%), the change was <strong>+76.7 percentage points</strong>, and all 15 properties moved in the same direction; the weakest effect was The Madrona (+2 of 8). &ldquo;All 15 improved&rdquo; describes this competitor-record comparison only &mdash; it does not apply to the ordinary-search comparison above.</p>
+    </div>
+    
+    <div class="subord">
+      <p><strong>An earlier, smaller study</strong> (5 properties; 50 observations per condition; no records supplied vs. all 5 market records supplied) found naming rise from 28 of 50 (56%) to 46 of 50 (92%), and top-recommendation rate from 5 of 50 (10%) to 23 of 50 (46%). Caveat from the original report: the lift was not target-specific &mdash; peer properties&rsquo; naming rose too (40 of 200 peer slots, 20%, to 106 of 200, 53%) &mdash; and the top-pick lift is confounded by design (the questions were written so the target was a plausible answer).</p>
+    </div>
+    
+  </div>
+</section>
+
+
+<main>
+<!-- 1 — OBSERVATIONS -->
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">01 — What you’re doing right</p>
+    <h2>Your own site already gets a lot right</h2>
+    <p class="section-intro">A few traveler-relevant facts, each one verified against your official pages — this is the kind of clear information travelers (and the systems advising them) rely on.</p>
+    
+    <div class="positive">
+      <p>10 guest rooms — every room has a private entrance and a full en suite bathroom.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/">Seagull Inn official site</a></p>
+      
+    </div>
+    
+    <div class="positive">
+      <p>Daily organic breakfast included with your stay, delivered to your room at 8:30, 9:00, or 9:30 AM.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/">Seagull Inn official site</a></p>
+      
+    </div>
+    
+    <div class="positive">
+      <p>Check-in 3:00–7:00 PM (extended to 8:00 PM late spring through early fall) and check-out at 11:00 AM, published on your policies page.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/policies-mendocino-bed-and-breakfast/">Seagull Inn policies page</a></p>
+      
+    </div>
+    
+    <div class="positive">
+      <p>A plainly stated non-smoking policy — no smoking anywhere on the property, with a $200 cleaning fee for smoking in a room.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/policies-mendocino-bed-and-breakfast/">Seagull Inn policies page</a></p>
+      
+    </div>
+    
+  </div>
+</section>
+
+
+<!-- 2 — WHAT WE FOUND -->
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">02 — What we found</p>
+    <h2>One thing worth a closer look</h2>
+    <div class="finding-head"><strong>Your site doesn&#x27;t say where guests park — but booking sites do.</strong></div>
+    <div class="compare">
+      <div class="cmp official">
+        <h3>Your current information</h3>
+        <p>Parking isn&#x27;t addressed anywhere on seagullbb.com — not on the homepage, rooms pages, or policies page.</p>
+        
+        <p class="src">Source: <a href="https://seagullbb.com/policies-mendocino-bed-and-breakfast/">Seagull Inn policies page (checked)</a></p>
+        
+      </div>
+      <div class="cmp elsewhere">
+        <h3>What travelers may encounter elsewhere</h3>
+        <p>Travelocity&#x27;s listing for the inn reports complimentary self-parking — a detail travelers will take as fact.</p>
+        
+        <p class="src">Source: <a href="https://www.travelocity.com/Mendocino-Hotels-Seagull-Inn.h2738829.Hotel-Information">Travelocity listing</a></p>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 3 — WHY THIS MATTERS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">03 &mdash; Why this matters</p>
+    <h2>Decisions start before your website</h2>
+    <p>More travelers now compare places to stay through search engines, travel sites, and AI assistants before they ever reach your website. Those systems can only work with what&rsquo;s published. When official facts are missing &mdash; or third-party sites tell a different story &mdash; it gets harder for people, and the machines helping them, to understand your property accurately.</p>
+    <p>BBFinder makes no promises about rankings, traffic, bookings, or revenue. What we do is simpler: make sure the facts in circulation about your inn are current, sourced, and consistent.</p>
+  </div>
+</section>
+
+<!-- 4 — WHAT BBFINDER DOES -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">04 &mdash; What BBFinder does</p>
+    <h2>A clean record of the facts</h2>
+    <p>BBFinder creates a clean, source-linked factual record of your property. We separate what your official site says today from stale or conflicting third-party information, give you a simple way to correct or update anything, and keep the record easy for both people and machines to understand.</p>
+    
+    <p class="section-intro">A preview of your BBFinder factual record:</p>
+    <div class="record">
+      <h3>Seagull Inn</h3>
+      <p class="sub">BBFinder factual record &middot; BBF-0001 &middot; Mendocino, CA</p>
+      <table>
+        
+        <tr><th scope="row">Rooms</th><td>10 guest rooms</td></tr>
+        
+        <tr><th scope="row">Check-in</th><td>3:00–7:00 PM (to 8:00 PM late spring–early fall)</td></tr>
+        
+        <tr><th scope="row">Check-out</th><td>11:00 AM</td></tr>
+        
+        <tr><th scope="row">Breakfast</th><td>Daily organic breakfast included, delivered to room</td></tr>
+        
+        <tr><th scope="row">Parking</th><td>Not stated on official site (Travelocity reports free self-parking)</td></tr>
+        
+        <tr><th scope="row">Pets / smoking</th><td>Pets not accommodated in rooms; non-smoking property</td></tr>
+        
+      </table>
+    </div>
+    
+  </div>
+</section>
+
+<!-- 5 — EVIDENCE / METHODS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">05 — The proof</p>
+    <h2>What we actually found</h2>
+    <p class="section-intro">The evidence behind this page, stated plainly — what your site says, what public sources say, and where they differ. Where something isn’t published, we say so instead of guessing.</p>
+    
+    
+    
+    <div class="proof-item">
+      <p>Parking: not published on the official site; Travelocity reports complimentary self-parking. The official record stays silent while a third party answers the question.</p>
+      
+      <p class="src">Source: <a href="https://www.travelocity.com/Mendocino-Hotels-Seagull-Inn.h2738829.Hotel-Information">Travelocity listing</a></p>
+      
+    </div>
+    
+    <div class="proof-item">
+      <p>Your breakfast times, check-in/out hours, and no-pets / non-smoking policies are all published on your official policies page — exactly the kind of primary-source clarity travelers need.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/policies-mendocino-bed-and-breakfast/">Seagull Inn policies page</a></p>
+      
+    </div>
+    
+    <div class="proof-item">
+      <p>Your direct contact email (seagull@mcn.org) is published on your homepage, so travelers can reach you without going through a booking site.</p>
+      
+      <p class="src">Source: <a href="https://seagullbb.com/">Seagull Inn official site</a></p>
+      
+    </div>
+    
+    
+    
+    <details class="sources">
+      <summary>See the sources</summary>
+      <ol>
+        
+        <li><a href="https://seagullbb.com/">Seagull Inn official site</a></li>
+        
+        <li><a href="https://seagullbb.com/policies-mendocino-bed-and-breakfast/">Seagull Inn policies page</a></li>
+        
+        <li><a href="https://seagullbb.com/guestrooms-mendocino-bed-and-breakfast-inn/">Seagull Inn guest rooms page</a></li>
+        
+        <li><a href="https://www.travelocity.com/Mendocino-Hotels-Seagull-Inn.h2738829.Hotel-Information">Travelocity listing</a></li>
+        
+      </ol>
+    </details>
+    
+  </div>
+</section>
+
+<!-- 6 — YOUR BBFINDER RECORD -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">06 &mdash; Your BBFinder record</p>
+    <h2>What you receive</h2>
+    <ul class="deliver">
+      <li>Published BBFinder factual record for Seagull Inn</li>
+      <li>Source-linked property information &mdash; every fact traceable to its source</li>
+      <li>Correction and update intake &mdash; tell us when something changes</li>
+      <li>Current official facts clearly distinguished from conflicting public information</li>
+      <li>Kept verified, current, and clean for your first year &mdash; corrections and updates processed</li>
+    </ul>
+    <div class="price">
+      <div class="tier">
+        <p class="name">BBFinder Record</p>
+        <p class="amount">$199</p>
+        <p class="per">activation &mdash; includes your first year</p>
+      </div>
+      <div class="tier optional">
+        <p class="name">90-Day Re-check &amp; Update</p>
+        <p class="amount">$99</p>
+        <p class="per">optional add-on</p>
+      </div>
+    </div>
+    <p class="renewal">After your first year: <strong>$199 annual renewal</strong> to remain active and maintained on BBFinder &mdash; your record kept verified, current, and clean, with corrections and updates processed. No automatic renewal: we&rsquo;ll invite you to renew.</p>
+  </div>
+</section>
+
+<!-- 7 — CALL TO ACTION -->
+<section class="cta">
+  <div class="wrap">
+    <p class="eyebrow">07 &mdash; Next step</p>
+    <h2>Make your story consistent</h2>
+    <p>Activate your BBFinder record and give travelers &mdash; and the AI assistants advising them &mdash; one clear, sourced, up-to-date story about Seagull Inn.</p>
+    <a class="btn" href="mailto:mike@optomiz.com?subject=Activate%20BBFinder%20record%20%E2%80%94%20Seagull%20Inn">Activate My BBFinder Record &mdash; $199</a>
+    <p class="staged-note">Online checkout isn&rsquo;t connected yet &mdash; this button is staged. We&rsquo;ll confirm the checkout step with you before anything goes live.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Prepared September 2026 for Seagull Inn, Mendocino, CA.</p>
+    
+    <p>Questions or corrections? Email <strong>BBFinder</strong> at <a href="mailto:mike@optomiz.com">mike@optomiz.com</a>.</p>
+    <p>BBFinder &middot; records.bbfound.com &middot; Unknowns are marked as unknown &mdash; we don&rsquo;t guess.</p>
+  </div>
+</footer>
+
+</body>
+</html>
